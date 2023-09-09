@@ -1,0 +1,39 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Rahul kumar",
+      "email": "rahul@gmail.com",
+      "city": "Noida",
+      "Fname": "Kishan lal"
+    },
+    {
+      "name": "Hari5r",
+      "Fname": "Murari5",
+      "email": "hari@gmail.6",
+      "city": "Agra",
+      "id": 2
+    },
+    {
+      "name": "sandhya 3",
+      "email": "Ghj6",
+      "city": "fh3",
+      "Fname": "Fg3",
+      "id": 3
+    },
+    {
+      "name": "sandhya 3",
+      "email": "shradhathakur555@gmail.com",
+      "city": "fh3",
+      "Fname": "Fg3",
+      "id": 4
+    },
+    {
+      "name": "apsinghaky009@gmail.com",
+      "Fname": "apsinghaky009@gmail.com",
+      "email": "apsinghaky009@gmail.com",
+      "city": "Aligarh",
+      "id": 5
+    }
+  ]
+}

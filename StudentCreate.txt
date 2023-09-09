@@ -1,0 +1,60 @@
+
+import React, { Component } from 'react'
+
+export default class StudentCreate extends Component {
+  constructor(){
+super()
+this.state={
+  id:null,
+  name:null,
+  Fname:null,
+  email:null,
+  city:null
+}
+  this.submit=()=>{
+    
+  fetch("http://localhost:3000/students",{
+    
+    method:"POST",
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(this.state)
+  }).then((res)=>{
+    res.json().then((result)=>{
+window.location.href="/read"
+    })
+  })
+}
+  }
+  render() {
+    console.log(this.state);
+    return (
+      <>
+      <div className="mt-3">
+  <label  className="form-label">Email address</label>
+  <input type="text" className="form-control"name="name" id="exampleFormControlInput1"
+   placeholder="Enter name"onChange={(e)=>{this.setState({name:e.target.value})}}/>
+</div>
+<div className="mt-3">
+  <label  className="form-label">Email address</label>
+  <input type="text" className="form-control"name="fname" id="exampleFormControlInput1"
+   placeholder="Enter fname"onChange={(e)=>{this.setState({Fname:e.target.value})}}/>
+</div>
+<div class="mt-3">
+  <label  className="form-label">Email address</label>
+  <input type="email" className="form-control"name="email" id="exampleFormControlInput1"
+   placeholder="Enter Email"onChange={(e)=>{this.setState({email:e.target.value})}}/>
+</div>
+<div className="mt-3">
+  <label  className="form-label">City</label>
+  <input type="city" className="form-control"name="city" id="exampleFormControlInput1"
+   placeholder="Enter city"onChange={(e)=>{this.setState({city:e.target.value})}}/>
+</div>
+ <div className="mt-3">
+  
+  <input type="Submit" className="form-control bg-danger" onClick={this.submit} />
+</div>
+
+      </>
+    )
+  }
+}

@@ -1,0 +1,74 @@
+
+import React, { Component } from 'react'
+import withRouter from './withRouter'
+class StudentUpdate extends Component {
+constructor(){
+  super()
+  this.state={
+    name:null,
+    Fname:null,
+    email:null,
+    city:null
+  }
+}  
+getUpdateData=()=>{
+  fetch("http://localhost:3000/students/"+this.props.params.id)
+  .then((res)=>{
+    res.json().then((result)=>{
+      console.log("result");
+      this.setState({name:result.name,Fname:result.Fname,email:result.email,city:result.city})
+    })
+  })
+  
+}
+componentDidMount(){
+  
+  this.getUpdateData()
+
+}
+update(){
+  fetch("http://localhost:3000/students/"+this.props.params.id,{method:'PUT',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify(this.state)
+}).then((res)=>{
+  res.json().then((result)=>{
+    window.location.href="/read"
+  })
+})
+}
+  render() {
+    console.log(this.props.params.id)
+    return (
+      <>
+      <div className="mt-3">
+  <label  className="form-label">Email address</label>
+  <input type="text" className="form-control"name="name" id="exampleFormControlInput1"
+  value={this.state.name}onChange={(e)=>{this.setState({name:e.target.value})}}
+   placeholder="Enter name"/>
+</div>
+<div class="mt-3">
+  <label  className="form-label">Email address</label>
+  <input type="text" className="form-control"name="fname" id="exampleFormControlInput1"  
+   value={this.state.Fname}onChange={(e)=>{this.setState({Fname:e.target.value})}}
+  placeholder="Enter fname"/>
+</div>
+<div className="mt-3">
+  <label  className="form-label">Email address</label>
+  <input type="email" className="form-control"name="email" id="exampleFormControlInput1" 
+    value={this.state.email} onChange={(e)=>{this.setState({email:e.target.value})}} placeholder="Enter Email"/>
+</div>
+<div class="mt-3">
+  <label  className="form-label">Email address</label>
+  <input type="city" className="form-control"name="city" id="exampleFormControlInput1" 
+   value={this.state.city}onChange={(e)=>{this.setState({city:e.target.value})}} placeholder="Enter city"/>
+</div>
+ <div className="mt-3">
+  <label  className="form-label">Email address</label>
+  <input type="submit" className="form-control bg-danger "value="Update"
+  onClick={()=>{this.update()}}/>
+</div>
+      </>
+    )
+  }
+}
+export default withRouter(StudentUpdate)

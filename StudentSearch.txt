@@ -1,0 +1,63 @@
+
+import React, { Component } from 'react'
+
+export default class StudentSearch extends Component {
+  
+  constructor(){
+    super()
+    this.state={
+      searchdata:null,
+      data:null
+    }
+  }
+  
+  search(data){
+    console.log(data);
+    fetch("http://localhost:3000/students?q="+data).then((res)=>{
+      res.json().then((result)=>{
+       console.log(result);
+       this.setState({searchdata:result})
+      })
+    })
+  }
+
+  render() {
+    return (
+      <>
+       
+      <div className="input-group mb-3">
+  <input type="text" className="form-control" placeholder="Search data"  onChange={(e)=>{this.setState({data:e.target.value})}}/>
+  <button className="btn btn-outline-secondary" type="button"onClick={()=>{this.search(this.state.data)}} >Button</button>
+</div>
+<table className="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Fname</th>
+      <th scope="col">Email</th>
+      <th scope="col">City</th>
+      <th  scope="col">Edit</th>
+       <th  scope="col">Delete</th>
+    </tr>
+  </thead>
+  {this.state.searchdata?<tbody>
+    {this.state.searchdata.map((item,id)=>{
+    return(
+      <tr key={id}> 
+     <td>{item.id}</td>
+     <td>{item.name}</td>
+     <td>{item.Fname}</td>
+     <td>{item.email}</td>
+     <td>{item.city}</td>
+  
+  </tr>
+    )
+  })}
+  </tbody>:<tbody><tr><td colSpan="8">No Data</td></tr></tbody>}
+   
+  </table>
+      </>
+    )
+  }
+}
